@@ -289,7 +289,19 @@ function uid() {
 				// Set a custom container for the toolbar.
 				document.querySelector( '.collaboration-demo__toolbar' ).appendChild( editor.ui.view.toolbar.element );
 				document.querySelector( '.ck-toolbar' ).classList.add( 'ck-reset_all' );
-		
+				const exportHTMLBtn = document.createElement('div');
+				exportHTMLBtn.innerText = 'Export Html';
+				exportHTMLBtn.addEventListener('click', () => {
+					const htmlString = editor.getData();
+					var element = document.createElement('a');
+					element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(htmlString));
+					element.setAttribute('download', 'html.txt');
+					element.style.display = 'none';
+					document.body.appendChild(element);
+					element.click();
+					document.body.removeChild(element);
+				})
+				document.querySelector('.collaboration-demo__toolbar').appendChild(exportHTMLBtn);
 				if ( !editor.plugins.has( 'AnnotationsUIs' ) ) {
 					return;
 				}
