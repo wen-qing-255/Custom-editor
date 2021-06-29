@@ -233,51 +233,58 @@ function uid() {
 					channelId: cloudServicesConfig.channelId
 				},
 				heading: {
-					options: [{
-						model: 'heading(wq)', title: 'heading(wq)', 
-						view: {
-								name: 'span',
-								styles: {
-										'display': 'inline-block',
-										'font-size': '12px',
-										'color': '#f00',
-										
-								}
-						},
-						class: 'wq-heading'},
-						{
-						model: 'heading2(hang)', title: 'heading2(hang)', 
-						view: {
-								name: 'div',
-								styles: {
-										'display': 'inline-block',
-										'font-size': '28px',
-										'color': '#f0f',
-										'line-height': '1.2',
-										'vertical-align': 'text-top'
-								}
-						},
-						class: 'wq-heading2'},
-						{
-						model: 'heading3(wq)', title: 'p3(wq)', 
-						view: {
-								name: 'p',
-								styles: {
-										'font-size': '18px',
-										'color': '#000'
-								}
-						},
-						class: 'wq-heading3'},
+					options: [
             {
-						model: 'heading4(wq)', title: 'heading3(wq)', 
-						view: {
-								name: 'h2',
-								styles: {
-										'font-size': '18px',
-										'color': '#ff0'
-								}
-						},
-						class: 'wq-heading4'},
+              model: 'heading-1-floating',
+              title: 'heading-1-floating',
+              view: {
+                name: 'h1',
+                styles: {
+                  'display': 'inline-block',
+                  'font-size': '63px',
+                  'color': '#3f9cef',
+                  'font-family': 'Roboto Light',
+                  'vertical-align': 'text-top',
+                  'margin-top': '10px'
+                }
+              }
+            },
+            {
+              model: 'heading-1-content',
+              title: 'heading-1-content',
+              view: {
+                name: 'span',
+                styles: {
+                  'font-size': '23px',
+                  'color': '#161616',
+                  'font-family': 'Roboto Regular',
+                }
+              }
+            },
+            {
+              model: 'heading-2 & heading-3',
+              title: 'heading-2 & heading-3',
+              view: {
+                name: 'h2',
+                styles: {
+                  'font-size': '18px',
+                  'font-family': 'Robota Regular',
+                  'color': '#161616',
+                }
+              }
+            },
+            {
+              model: 'paragraph-1',
+              title: 'paragraph-1',
+              view: {
+                name: 'p',
+                styles: {
+                  'font-size': '16px',
+                  'font-family': 'Roboto Light',
+                  'color': '#3f3f3f',
+                }
+              }
+            }
 					]
 				},
 				// highlight: {
@@ -289,6 +296,17 @@ function uid() {
 				// 		type: 'marker',
 				// 	}]
 				// },
+        fontColor: {
+          colors: [
+            {
+              color: '#161616',
+              label: 'black-1',
+            }, {
+              color: '#3f9cef',
+              lable: 'blue-1'
+            }
+          ]
+        },
 				image: {
 					toolbar: ['imageStyle:alignLeft', 'imageStyle:alignCenter', 'imageStyle:alignRight', '|', 'imageTextAlternative'],
 					styles: [ 'alignLeft', 'alignCenter', 'alignRight' ]
