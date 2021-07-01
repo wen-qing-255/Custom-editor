@@ -179,11 +179,20 @@ function uid() {
 		`;
 		
 		let revertOriginalButtonTimeoutId = null;
-		
+		function ConvertDivAttributes( editor ) {
+      editor.conversion.for('downcast').add(dispatch => {
+        dispatch.on('attribute:class', (evt, data, conversionApi) => {
+          const viewWriter = conversionApi.writer;
+          const viewSelection = viewWriter.document.selection;
+          console.log({data})
+        })
+      })
+    }
 		createDialog().then( cloudServicesConfig => {
 		return DecoupledDocumentEditor
 			.create( document.querySelector( '.collaboration-demo__editable' ), {
-				
+
+        extraPlugins: [ConvertDivAttributes],
 				toolbar: {
 					items: [
 						'heading',
@@ -239,16 +248,17 @@ function uid() {
               model: 'heading-1-floating',
               title: 'heading-1-floating',
               view: {
-                name: 'h1',
+                name: 'p',
                 styles: {
                   'display': 'inline-block',
                   'font-size': '63px',
+                  'line-height': '0.8em',
+                  // 'font-size': '30px',
                   'color': '#3f9cef',
                   'font-family': 'Roboto Light',
-                  'vertical-align': 'text-top',
-                  'margin-top': '10px',
-                  'margin-bottom': '13px',
-                  'font-weight': 'normal'
+                  'vertical-align': 'top',
+                  'margin-block-start': '0 !important',
+                  'margin-block-end': '0 !important'
                 }
               }
             },
@@ -283,6 +293,7 @@ function uid() {
                 name: 'p',
                 styles: {
                   'font-size': '16px',
+                  'margin-top': '0px',
                   'font-family': 'Roboto Light',
                   'color': '#3f3f3f',
                 }
@@ -290,15 +301,15 @@ function uid() {
             }
 					]
 				},
-				// highlight: {
-				// 	options: [{
-				// 		model: 'normalMarker',
-				// 		class: 'normal-marker',
-				// 		title: 'Normal Marker',
-				// 		color: '#db8181',
-				// 		type: 'marker',
-				// 	}]
-				// },
+				highlight: {
+					options: [{
+						model: 'normalMarker',
+            class: 'normal-marker',
+						title: 'Normal Marker',
+						color: '#db8181',
+						type: 'marker',
+					}]
+				},
         fontColor: {
           colors: [
             {
@@ -308,6 +319,12 @@ function uid() {
               color: '#3f9cef',
               lable: 'blue-1'
             }
+          ]
+        },
+        fontFamily: {
+          options: [
+            'default',
+            'Roboto',
           ]
         },
 				image: {
@@ -341,7 +358,18 @@ function uid() {
 						domEvt.returnValue = true;
 					}
 				} );
-		
+        console.log(editor.conversion.elementToElement)
+        editor.conversion.for('downcast').elementToElement({
+          converterPriority: 'high',
+          model: 'mark',
+          view: {
+            name: 'div',
+            classes: 'green',
+            styles: {
+              'background-color': '#db8181'
+            }
+          }
+        })
 				// Set a custom container for the toolbar.
 				document.querySelector( '.collaboration-demo__toolbar' ).appendChild( editor.ui.view.toolbar.element );
 				document.querySelector( '.ck-toolbar' ).classList.add( 'ck-reset_all' );
