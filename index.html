@@ -208,7 +208,7 @@ function uid() {
 						'italic',
 						'underline',
 						'strikethrough',
-            'horizontalLine',
+        				'horizontalLine',
 						'|',
 						'alignment',
 						'|',
@@ -301,15 +301,15 @@ function uid() {
             }
 					]
 				},
-				highlight: {
-					options: [{
-						model: 'normalMarker',
-            class: 'normal-marker',
-						title: 'Normal Marker',
-						color: '#db8181',
-						type: 'marker',
-					}]
-				},
+				// highlight: {
+				// 	options: [{
+				// 		model: 'normalMarker',
+            	// 		class: 'normal-marker',
+				// 		title: 'Normal Marker',
+				// 		color: '#db8181',
+				// 		type: 'marker',
+				// 	}]
+				// },
         fontColor: {
           colors: [
             {
@@ -327,15 +327,26 @@ function uid() {
             'Roboto',
           ]
         },
-				image: {
-					toolbar: ['imageStyle:alignLeft', 'imageStyle:alignCenter', 'imageStyle:alignRight', '|', 'imageTextAlternative'],
-					styles: [ 'alignLeft', 'alignCenter', 'alignRight' ]
-				},
-				sidebar: {
-				container: document.querySelector( '.sidebar' )
-			},
-				
-				
+		image: {
+			toolbar: ['imageStyle:alignLeft', 'imageStyle:alignCenter', 'imageStyle:alignRight', '|', 'imageTextAlternative'],
+			styles: [ 'alignLeft', 'alignCenter', 'alignRight' ]
+		},
+		sidebar: {
+			container: document.querySelector( '.sidebar' )
+		},	
+		
+		exportPdf: {
+			stylessheets: [
+				'EDITOR_STYLES',
+			],
+			fileName: 'document.pdf',
+			converterOptions: {
+				margin_top: '20mm',
+				margin_bottom: '20mm',
+				margin_left: '12mm',
+				margin_right: '12mm'
+			}
+		}	
 			} )
 			.then( editor => {
 				window.editor = editor;
